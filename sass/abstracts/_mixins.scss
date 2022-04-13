@@ -1,0 +1,51 @@
+@mixin absCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+
+
+/////////////////Media query////////////////////////////////
+
+/// 0 - 600px : Phone
+/*
+0 - 600px:      Phone 
+600 - 900px:    Tablet portrait
+900 - 1200px:   Tablet landscape
+1200 - 1800px:  normal styles 
+1800px:         Big destop
+*/
+
+
+// @mixin respond-phone{
+//   @media (max-width: 600px) { @content };
+// }
+
+/*
+breakpoint arguement choices
+- phone
+- tab-port
+- tab-land
+- big-desktop
+*/
+
+//media query只取決於browser，不會跟著在root的html{ font-size:62.5% }做改變，因此1rem 1em都是16px
+// so em is the best in media query        
+
+//Order: Base + typography > general layout  + grid > page layout > components 
+@mixin respond($breakpoint){
+  @if $breakpoint == phone{               // width < 600?   
+    @media (max-width: 37.5em) { @content};    //600px   600 / 16px = 37.5em
+  }
+  @if $breakpoint == tab-port{          // width < 900?     
+    @media (max-width: 56.25em) { @content};  //900px
+  }
+  @if $breakpoint == tab-land{              // width < 1200  ?
+    @media (max-width: 75em) { @content};   //1200px
+  }
+  @if $breakpoint == big-desktop{            // width > 1800 ?
+    @media (min-width: 112.5em) { @content}; //1800px
+  }
+}

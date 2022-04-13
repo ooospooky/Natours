@@ -1,0 +1,101 @@
+.popup{
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: rgba($color-black,.8);
+  z-index: 9999;
+  visibility: hidden;
+  opacity: 0;
+  transition: all .3s;
+@supports (--webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)){
+  --webkit-backdrop-filter: blur(10px);
+  background-color: rgba($color-black,.3);
+  backdrop-filter: blur(10px);
+}
+  &__content{
+    @include absCenter;
+    width: 75%;
+    // height:70%;
+    background-color: $color-white;
+    box-shadow: 0 2rem 4rem rgba($color-black,.2);
+    border-radius: 3px;
+    display:flex;
+    // align-items: stretch;
+    opacity: 0;
+    transform:translate(-50%,-50%) scale(.25);
+    transition: all .4s .2s;
+    @include respond(tab-land){
+      width: 80%;
+    }
+    @include respond(tab-port){
+      display: inline;
+      text-align: center;
+      padding-top:5rem;
+      height: 90%;
+      width: 80%;
+    }
+    @include respond(phone){
+      padding-top:0;
+      height: 90%;
+      width: 90%;
+    }
+  }
+  //////////////////animation//////////////
+  &:target{
+    visibility: visible;
+    opacity: 1;
+  }
+  &:target &__content{
+    transform:translate(-50%,-50%) scale(1);
+    opacity: 1;
+  }
+////////////////////////////////////////////
+  &__left{
+    flex-basis:33.3334%;
+    overflow: hidden;
+    @include respond(tab-port){
+      display: none
+    }
+  }
+  &__right{
+    flex-basis:66.6666%;
+    padding:3rem 5rem;
+    // align-self: center;
+  }
+  &__photo{
+    display:block;
+    width: 100%;
+
+    //test////////////////////////////////////////////////////////////////
+    height:50%;
+  }
+  &__text{
+    font-size: 1.4rem;
+    margin-bottom: 4rem;
+    column-count: 2;
+    column-gap: 3rem;
+    column-rule: 1px solid $color-grey-light-2;
+    hyphens: auto;
+    @include respond(phone){
+      margin-bottom: 1rem;
+    }
+  }
+  ////////////close//////////
+  &__close{
+    text-decoration:none;
+    line-height: 1;
+    position: absolute;
+    top:2.5rem;
+    right:2.5rem;
+    font-size:3rem;
+    
+    transition: all .3s;
+    &:hover{
+      color:$color-primary;
+    }
+
+  }
+}

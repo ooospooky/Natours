@@ -1,0 +1,42 @@
+
+html{
+  font-size:62.5% ;
+  /* 這裡設置％數比直接設定10px還要好得多，因為user可能將字體預設為20px等等 
+     設為%數便可以在user預設其他字體大小時也進行變化
+    設10px(6.2.5%)目前只是因為方便將其他px改成rem   rem取決於root(html)的font size
+  */
+
+  @include respond(tab-land){    
+    font-size: 56.25%;   //I want 1rem = 9px, so 9/16(original is 16px) = 56.25%
+  }
+  @include respond(tab-port){
+    font-size:  50%;  // I want 1rem = 8px, so 8/16(original is 16px) = 50%
+  }
+  @include respond(phone){
+    font-size: 50%;
+  }
+  @include respond(big-desktop){
+    font-size: 75%;        //I want 1rem = 12px, so 12/16(original is 16px) = 75%
+  }
+}
+*,
+*::before,
+*::after {
+  margin: 0;
+  border: 0;
+  box-sizing: inherit;
+}
+
+body {
+  box-sizing: border-box;
+  padding: 3rem;
+  @include respond(tab-port){
+    padding:0;
+    overflow-x: hidden;
+  }
+}
+
+::selection{
+  background-color: $color-primary;
+  color:$color-white;
+}

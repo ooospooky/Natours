@@ -1,0 +1,80 @@
+.btn{
+  &,
+  &:link,
+  &:visited{
+    text-transform: uppercase;
+    padding:1.5rem 4rem;
+    display:inline-block;
+    text-decoration:none;
+    border-radius:10rem;
+    transition: all .2s;
+    position: relative;
+  }
+  &:hover{
+    transform:translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba($color-black,.2);
+    &::after{
+      transform:  scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+  &:active{
+    transform: translateY(-1px);
+    box-shadow: 0 0.7rem 1rem rgba($color-black,.2);
+    /* 高度取決於.visited而不是hover */
+  }
+  &--white{
+    background-color: $color-white;
+    color:$color-grey-dark;
+    &::after{
+      background-color: $color-white;
+    }
+  }
+  &--primary{
+    background-color: $color-primary;
+    color:$color-white;
+    &::after{
+      background-color: $color-primary;
+    }
+  }
+  &::after{
+    content:"";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left:0;
+    z-index: -1;
+    transition: all .4s;
+  }
+  &--animated{
+    /* opacity: 0; */
+    animation: buttonMoveUp .5s ease-out .75s;
+    animation-fill-mode: backwards;
+  }
+}
+
+.btn-text{
+  &:link,
+  &:visited {
+    font-size: $default-font-size;
+    color:$color-primary;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px solid $color-primary;
+    padding:3px;
+    transition: all .2s;
+  }
+  &:hover {
+    color:$color-white;
+    background-color: $color-primary;
+    box-shadow: 0 1rem 2rem rgba($color-black,.15);
+    transform: translateY(-2px);
+  }
+  &:active{
+    box-shadow: 0 .5rem 2rem rgba($color-black,.15);
+    transform:translateY(0)
+  }
+}
